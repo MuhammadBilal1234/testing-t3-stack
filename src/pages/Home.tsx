@@ -1,27 +1,28 @@
-import {
-  ClerkProvider,
-  SignedIn,
-  SignedOut,
-  SignInButton,
-  UserButton,
-} from "@clerk/nextjs";
+import { ChangeEvent, useState } from "react";
+import Button from "~/components/Button";
+import TextField from "~/components/TextField";
+import Header from "~/layouts/header";
 
-function Header() {
+function HomePage() {
+  const [search, setSearch] = useState("");
+
+  const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setSearch(e.target.value);
+  };
+
   return (
-    <header
-      style={{ display: "flex", justifyContent: "space-between", padding: 20 }}
-    >
-      <h1>My App</h1>
-      <SignedIn>
-        {/* Mount the UserButton component */}
-        <UserButton />
-      </SignedIn>
-      <SignedOut>
-        {/* Signed out users get sign in button */}
-        <SignInButton />
-      </SignedOut>
-    </header>
+    <main className="h-screen w-screen">
+      <Header />
+      <div className="m-auto flex h-[80%] w-[70%]  items-center justify-center space-x-2 ">
+        <TextField
+          value={search}
+          handleChange={handleSearchChange}
+          label="Search"
+        />
+        <Button label="Search" handleClick={() => alert(search)} />
+      </div>
+    </main>
   );
 }
 
-export default Header;
+export default HomePage;
