@@ -25,7 +25,7 @@ function HomePage() {
           label="Search"
         />
         <Button
-          label="Search"
+          label="Search for Companies"
           handleClick={() => setMoveSearchBartoTop(true)}
         />
       </div>
