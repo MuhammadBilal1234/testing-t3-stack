@@ -1,12 +1,18 @@
-import { ChangeEvent, Dispatch, SetStateAction } from "react";
+import { ChangeEvent, KeyboardEvent } from "react";
 
 interface ITextField {
   label: string;
   value: string;
   handleChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  handleKeyDown?: (e: KeyboardEvent<HTMLInputElement>) => void;
 }
 
-export default function TextField({ label, value, handleChange }: ITextField) {
+export default function TextField({
+  label,
+  value,
+  handleChange,
+  handleKeyDown,
+}: ITextField) {
   return (
     <div className="  w-full">
       {/* <label
@@ -19,6 +25,7 @@ export default function TextField({ label, value, handleChange }: ITextField) {
         type="text"
         value={value}
         onChange={(e) => handleChange(e)}
+        onKeyDown={(e) => handleKeyDown && handleKeyDown(e)}
         id="success"
         className="block w-full rounded-lg border p-2.5  text-sm outline-none "
         placeholder="Search Company"
